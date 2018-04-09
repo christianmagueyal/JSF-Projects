@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+        #{UserBean.refreshMyAppointments()}
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>Student Home</h2>
+        </h:panelGroup>
+        <div class="content">
+            <h:body>
+                #{fileBean.updateList()}
+                <h1>#{UserBean.currentUser.firstName} #{UserBean.currentUser.lastName}</h1>
+                <h:form id="profileform">
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-lg-3">
+                            <h:graphicImage value="../resources/images/default-picture.png" 
+                                            height="auto" width="150" rendered="#{not UserBean.hasPicture()}"/>
+                            <h:dataTable value="#{fileBean.list}" var="file">
+                                <h:column >
+                                    <h:graphicImage value="ImageServlet?fileid=#{file.id}&amp;inline=true"
+                                                    height="auto" width="150" rendered = "#{UserBean.hasPicture()}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="ui-g-12 ui-md-9 ui-g-nopad">
+                            <div class="ui-g-12">
+                            </div>
+                            <div class="ui-g-12 ui-g-nopad" style="font-weight: bold">
+                                <div class="ui-g" >
+                                    <div class="ui-g-12 ui-md-12">Username:
+                                        <h:outputText  value="#{UserBean.currentUser.userName}" />
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12">UCO ID:
+                                        <h:outputText value="#{UserBean.currentUser.ucoID}" />
+                                    </div>
+                                </div>
+                                <div class="ui-g-12 ui-md-12">
+                                    Major:
+                                    <h:inputText id="major" value="#{UserBean.currentUser.major}" size="10" rendered="#{UserBean.edit}" />
+                                    <h:outputText value="#{UserBean.currentUser.major}"  rendered="#{not UserBean.edit}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-lg-2">
+                            <h:link styleClass="btn"  outcome="uploadpicture"
+                                    value="Change Picture"/>
+                        </div>
+                        <div class="ui-g-12 ui-lg-2">
+                            <h:commandButton styleClass="btn" value ="Edit" action="#{UserBean.setEdit(true)}" rendered="#{not UserBean.edit}"/>
+                            <h:commandButton styleClass="btn" value ="Save" action="#{UserBean.editUser(UserBean.currentUser)}" rendered="#{UserBean.edit}"/>
+                        </div>
+                        <div class="ui-g-12 ui-lg-8">
+                            <h:commandButton styleClass="btn-cancel" value ="Cancel" immediate="true" action="#{UserBean.setEdit(false)}" rendered="#{UserBean.edit}"/>
+                        </div>
+                    </div> 
+                    <p:messages  style="color:green !important"/>
+                </h:form>
+                <br/>
+                <h:panelGroup/>
+                <h1>My Appointments: <div class="divider"/> <h:link class="btn" value="Appointment Sign Up" outcome="/studentFolder/signup"/>  </h1>
+                <h:panelGroup/>
+                <h:form id="appform">
+                    <p:dataTable value="#{UserBean.myAppointments}" reflow="true" var="app" styleClass="centered" >
+                        <p:column sortBy="#{app.advisorLastName}">
+                            <f:facet name="header">Advisor</f:facet>
+                            <h:outputText value="#{app.advisorLastName}" />
+                        </p:column>
+                        <p:column sortBy="#{app.date}">
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText value="#{app.date}"  >
+                                <f:convertDateTime pattern="MM/dd/YYYY"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{app.time}">
+                            <f:facet name="header">Time</f:facet>
+                            <h:outputText value="#{app.time}"  >
+                                <f:convertDateTime pattern="h:mm a" timeZone="US/Central"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <h:commandButton styleClass="btn-cancel" value="Cancel" onclick="return confirm('Are you sure?')" action="#{UserBean.cancel(app)}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <br/>
+                <h1>My Courses: <div class="divider"/> <h:link class="btn" value="Add a Course" outcome="#{UserBean.myCourses()}"/>  </h1>
+                <h:panelGroup/>
+                <p:dataTable value="#{UserBean.futureCourses}" reflow="true" var="studentCourse" styleClass="centered" >
+                    <p:column sortBy="#{studentCourse.courseName}">
+                        <f:facet name="header">Course Title</f:facet>
+                        <h:outputText value="#{studentCourse.courseName}"   />
+                    </p:column>
+                    <p:column sortBy="#{studentCourse.coursePrefix}">
+                        <f:facet name="header">Prefix</f:facet>
+                        <h:outputText value="#{studentCourse.coursePrefix}"  />
+                    </p:column>
+                    <p:column sortBy="#{studentCourse.courseNumber}">
+                        <f:facet name="header">Course Number</f:facet>
+                        <h:outputText value="#{studentCourse.courseNumber}"   />
+                    </p:column>
+                    <p:column sortBy="#{studentCourse.crn}">
+                        <f:facet name="header">CRN</f:facet>
+                        <h:outputText value="#{studentCourse.crn}"   />
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <h:panelGroup/>
+                <br/><br/>
+                <h:link styleClass ="btn" value="Change Password" outcome="/studentFolder/passwordchange"/>
+                <br/><br/>
+                <h:link class="btn" value="Logout" outcome="/logout" />
+                <br/><br/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>
+

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>My Available Time Slots</h2>
+        </h:panelGroup>
+        <div class="content">
+            <h:body >
+                <h:form id="slotsform">
+                    <p:dataTable value="#{AppointmentBean.appointments}" reflow="true" rows="5" paginator="true" var="s" styleClass="centered" >
+                        <p:column sortBy="#{s.date}">
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText value="#{s.date}"  >
+                                <f:convertDateTime pattern="MM/dd/YYYY"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{s.time}">
+                            <f:facet name="header">Time</f:facet>
+                            <h:outputText value="#{s.time}"  >
+                                <f:convertDateTime pattern="h:mm a" timeZone="US/Central"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <h:commandButton styleClass="btn-small-cancel" value="Delete" onclick="return confirm('Are you sure?')" action="#{AppointmentBean.delete(s.id)}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <p:message for="success" id="success"/>
+                    <br/>
+                    <h:link styleClass="btn" value="Refresh" outcome="#{AppointmentBean.viewTimeSlots()}"/>                    
+                    <br/>
+                    <div class="content-h3-size">Add a Time Slot:</div>
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="date" value="Date:" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <p:calendar id="date" value="#{AppointmentBean.date}" readonlyInput="true" >
+                            </p:calendar>
+                        </div>
+                        <div class="ui-g-12 ui-md-6"/>
+                        <div class="ui-g-12 ui-md-3">
+                            <p:outputLabel for="time" value="Time:" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <p:calendar id="time" value="#{AppointmentBean.time}" pattern="hh:mm a" timeOnly="true" readonlyInput="true"/> 
+                        </div>
+                        <div class="ui-g-12 ui-md-6"/>
+                        <div class="ui-g-12 ui-md-12">
+                            <p:messages id="datetime"/>
+                        </div>
+                        <h:commandButton styleClass="btn" value="Add Slot" action="#{AppointmentBean.create(UserBean.currentUser.lastName)}"/>
+                    </div>
+                </h:form>
+                <br/><br/>
+                <h:link styleClass="btn" outcome="/advisorFolder/home" value="Back"/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>

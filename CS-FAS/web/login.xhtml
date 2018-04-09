@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <div class="container">
+        <div class="header">
+            <h1>Login</h1>
+        </div>
+        <p:inputText rendered="false"/>
+        <div class="content-h3-size">
+            <h:body>
+                <h:form onsubmit="this.action = 'j_security_check';">
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-3">
+                            <h:outputText value="Username:" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <input type="text" name="j_username" />
+                        </div>
+                        <div class="ui-g-12 ui-md-6"/>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:outputText value="Password:" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <input type="password" name="j_password" />
+                        </div>
+                        <div class="ui-g-12 ui-md-6"/>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-9">
+                            <input class="btn" type="submit" value="Login" /> 
+                            <div style="font-size: 16px">
+                                New user?
+                                <h:link outcome="/register" value="Sign Up"/>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-12">
+                            <h:link class="btn" outcome="/index" value="Back"/>
+                        </div>
+                    </div>
+                </h:form>
+            </h:body>
+        </div> 
+    </div>
+</html>
+

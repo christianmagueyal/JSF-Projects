@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <div class="container">
+        <div class="header">
+            <h2>Account Confirmation</h2>
+        </div>
+        <p:inputText  rendered="false"/>
+        <div class="content-h3-size">   
+            <h:body>
+                <h:form id = "confirmform">
+                    <h:inputText id="hidden" rendered="false"/>
+                    <h:message for="hidden" errorStyle="color: red" infoStyle="color: green"/>
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-3">
+                            Username:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="username" value="#{registrationBean.confirmationUserName}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="username" errorStyle="color: red" infoStyle="color: green" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+
+                        <div class="ui-g-12 ui-md-3">
+                            Code:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="code" value="#{registrationBean.confirmationCode}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="code" errorStyle="color: red" infoStyle="color: green" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:link  styleClass="btn" value="Back" outcome="index" />
+                            <div class="divider"/>
+                            <h:commandButton class ="btn" value="Send" action="#{registrationBean.confirm()}"/>
+                        </div>
+                    </div>
+                </h:form>
+            </h:body>
+        </div>
+    </div>
+</html>
+

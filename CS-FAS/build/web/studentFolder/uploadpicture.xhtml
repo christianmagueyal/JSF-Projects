@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>Change Profile Picture</h2>
+        </h:panelGroup>
+        <div class="content-h3-size">
+            <h:body>
+                <h:link class="btn" value="Back to Profile" outcome="/studentFolder/profile"/>
+                <br/><br/>
+                <h:form id="uploadForm" enctype="multipart/form-data">
+                    <h:panelGrid columns="1">
+                        Upload File(max 16MB):
+                        <h:inputFile  id="file" label="file" value="#{fileBean.part}"
+                                      validator="#{fileBean.validateFile}" />
+                        <h:commandButton id="upload" action="#{fileBean.uploadFile}"
+                                         value="Save" />
+                        <p:messages />
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    </h:panelGrid>
+                </h:form>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>My Appointments</h2>
+        </h:panelGroup>
+        <div class="content">
+            <h:body >
+                <h:form id="myapps">
+                    <p:dataTable value="#{AppointmentBean.myAppointments}" paginator="true" reflow="true" rows="10" var="app" styleClass="centered" >
+                        <p:column sortBy="#{app.student}" headerText="Student Username">
+                            <h:outputText value="#{app.student}" />
+                        </p:column>
+                        <p:column sortBy="#{app.date}">
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText value="#{app.date}"  >
+                                <f:convertDateTime pattern="MM/dd/YYYY"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{app.time}">
+                            <f:facet name="header">Time</f:facet>
+                            <h:outputText value="#{app.time}"  >
+                                <f:convertDateTime pattern="h:mm a" timeZone="US/Central"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <h:commandButton  styleClass="btn-small" value="View Profile" action="#{AppointmentBean.viewProfile(app.student)}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandButton  styleClass="btn-small" value="Complete" action="#{AppointmentBean.advisementComplete(app)}"/>
+                        </p:column>
+                        <p:column>
+                            <h:commandButton  styleClass="btn-small-cancel" value="Cancel" onclick="return confirm('Are you sure?')" action="#{AppointmentBean.cancel(app)}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                    <br/>
+                    <h:link styleClass="btn" value="Refresh" outcome="#{AppointmentBean.viewAppointments()}"/>   
+                    <br/>
+                    <p:messages/>
+                </h:form>
+                <br/><br/>
+                <h:link styleClass="btn" outcome="/advisorFolder/home" value="Back"/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>Appointment Sign Up</h2>
+        </h:panelGroup>
+        <div class="content-h3-size">
+            <h:body>
+                <h:panelGrid columns="2" >
+                    <h:form id="signupform" >
+                        <div class="content-h3-size"> Open Time Slots:</div>
+                        <p:dataTable value="#{UserBean.appointments}" paginator="true" rows="10" reflow="true" var="appointment" styleClass="centered" >
+                            <p:column sortBy="#{appointment.advisorLastName}">
+                                <f:facet name="header">Advisor</f:facet>
+                                <h:outputText value="#{appointment.advisorLastName}" />
+                            </p:column>
+                            <p:column sortBy="#{appointment.date}">
+                                <f:facet name="header">Date</f:facet>
+                                <h:outputText value="#{appointment.date}"  >
+                                    <f:convertDateTime pattern="MM/dd/YYYY"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column sortBy="#{appointment.time}">
+                                <f:facet name="header">Time</f:facet>
+                                <h:outputText value="#{appointment.time}"  >
+                                    <f:convertDateTime pattern="h:mm a" timeZone="US/Central"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <h:commandButton styleClass="btn" value="Sign Up" action="#{UserBean.signUp(appointment)}"/>
+                            </p:column>
+                        </p:dataTable>
+                        <br/><br/>                        
+                        <p:messages/>
+                    </h:form>
+                </h:panelGrid>
+                <br/>
+                <h:panelGroup/>
+                <h:link class="btn" value="Back" outcome="/studentFolder/profile"/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>

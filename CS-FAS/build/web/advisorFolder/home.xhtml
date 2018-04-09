@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>Advisor Home Page</h2>
+        </h:panelGroup>
+        <div class="content">    
+            <h2>Hello, Dr. #{UserBean.currentUser.lastName}</h2>
+            <h:body>
+                <br />
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6">
+                        <div class="ui-g-12" >
+                            <p:link class="btn" style="width: " value="Manage Student Accounts" outcome="#{UserBean.reloadAll()}"/> 
+                        </div>
+                        <div class="ui-g-12">
+                            <p:link class="btn" value="Manage Appointments" outcome="#{AppointmentBean.viewAppointments()}"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:link class="btn" value="Manage Time Slots" outcome="#{AppointmentBean.viewTimeSlots()}"/> 
+                        </div>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="ui-g-12 ui-md-6">
+                        <div class="ui-g"> 
+                            <div class="ui-g-12 ">
+                                <p:link class="btn" value="Change Password" outcome="passwordreset"/> 
+                            </div>
+                            <div class="ui-g-12 ">
+                                <p:link class="btn" value="Logout" outcome="/logout" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>
+

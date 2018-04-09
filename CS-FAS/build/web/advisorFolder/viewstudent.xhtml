@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>Advisement View </h2>
+        </h:panelGroup>
+        <div class="content">
+            <h:body>
+                #{fileBean.updateList(AppointmentBean.student.userName)}
+                <h:form id="studentprofileform">
+                    <div  class="ui-g" >
+                        <div class="ui-g-12 ui-lg-3">
+                            <h:graphicImage value="../resources/images/default-picture.png" 
+                                            height="150" width="150" rendered="#{not fileBean.hasPicture()}"/>
+                            <h:dataTable value="#{fileBean.list}" var="file">
+                                <h:column >
+                                    <h:graphicImage value="ImageServlet?fileid=#{file.id}&amp;inline=true"
+                                                    height="150" width="150" rendered="#{fileBean.hasPicture()}"/>
+                                </h:column>
+
+                            </h:dataTable>
+                        </div>
+                        <div class="ui-g-12 ui-md-9 ui-g-nopad">
+                            <div class="ui-g-12">
+                            </div>
+                            <div class="ui-g-12 ui-g-nopad content-h3-size" style="font-weight: bold">
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-12">
+                                        #{AppointmentBean.student.firstName} #{AppointmentBean.student.lastName}
+                                    </div>
+                                    <div class="ui-g-12 ui-md-12">
+                                        UCO ID: #{AppointmentBean.student.ucoID}
+                                    </div>
+                                </div>
+                                <div class="ui-g-12 ui-md-12">
+                                    Major: #{AppointmentBean.student.major}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <h:panelGroup/>
+                    <h1>Completed:</h1>
+                    <p:dataTable value="#{AppointmentBean.studentCompleted}" reflow="true" var="sc" styleClass="centered" >
+                        <p:column sortBy="#{sc.courseName}">
+                            <f:facet name="header">Course Title</f:facet>
+                            <h:outputText value="#{sc.courseName}"   />
+                        </p:column>
+                        <p:column sortBy="#{sc.coursePrefix}">
+                            <f:facet name="header">Prefix</f:facet>
+                            <h:outputText value="#{sc.coursePrefix}"  />
+                        </p:column>
+
+                        <p:column sortBy="#{sc.courseNumber}">
+                            <f:facet name="header">Course Number</f:facet>
+                            <h:outputText value="#{sc.courseNumber}"   />
+                        </p:column>
+                        <p:column sortBy="#{sc.crn}">
+                            <f:facet name="header">CRN</f:facet>
+                            <h:outputText value="#{sc.crn}"   />
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <h1>Wants to Take:</h1>
+                    <p:dataTable value="#{AppointmentBean.studentFuture}" reflow="true" var="sf" styleClass="centered" >
+                        <p:column sortBy="#{sf.courseName}">
+                            <f:facet name="header">Course Title</f:facet>
+                            <h:outputText value="#{sf.courseName}"   />
+                        </p:column>
+                        <p:column sortBy="#{sf.coursePrefix}">
+                            <f:facet name="header">Prefix</f:facet>
+                            <h:outputText value="#{sf.coursePrefix}"  />
+                        </p:column>
+                        <p:column sortBy="#{sf.courseNumber}">
+                            <f:facet name="header">Course Number</f:facet>
+                            <h:outputText value="#{sf.courseNumber}"   />
+                        </p:column>
+                        <p:column sortBy="#{sf.crn}">
+                            <f:facet name="header">CRN</f:facet>
+                            <h:outputText value="#{sf.crn}"   />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <br/>
+                <br/>
+                <h:link class="btn" value="Back" outcome="#{AppointmentBean.viewAppointments()}"/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>

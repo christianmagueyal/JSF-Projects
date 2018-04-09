@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>My Courses</h2>
+        </h:panelGroup>
+        <div class="content-h3-size">
+            <h:body>
+                <h:form id="mycourseform" >
+                    <h1>Completed Courses </h1>
+                    <h:panelGroup/>
+                    <p:dataTable value="#{UserBean.completed}" reflow="true" var="studentCourse" styleClass="centered" >
+                        <p:column sortBy="#{studentCourse.courseName}">
+                            <f:facet name="header">Course Title</f:facet>
+                            <h:outputText value="#{studentCourse.courseName}"   />
+                        </p:column>
+                        <p:column sortBy="#{studentCourse.coursePrefix}">
+                            <f:facet name="header">Prefix</f:facet>
+                            <h:outputText value="#{studentCourse.coursePrefix}"  />
+                        </p:column>
+                        <p:column sortBy="#{studentCourse.courseNumber}">
+                            <f:facet name="header">Course Number</f:facet>
+                            <h:outputText value="#{studentCourse.courseNumber}"   />
+                        </p:column>
+                        <p:column sortBy="#{studentCourse.crn}">
+                            <f:facet name="header">CRN</f:facet>
+                            <h:outputText value="#{studentCourse.crn}"   />
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <h1>Next Semester's Courses</h1>
+                    <p:dataTable value="#{UserBean.futureCourses}" reflow="true" var="sc" styleClass="centered" >
+                        <p:column sortBy="#{sc.courseName}">
+                            <f:facet name="header">Course Title</f:facet>
+                            <h:outputText value="#{sc.courseName}"   />
+                        </p:column>
+                        <p:column sortBy="#{sc.coursePrefix}">
+                            <f:facet name="header">Prefix</f:facet>
+                            <h:outputText value="#{sc.coursePrefix}"  />
+                        </p:column>
+                        <p:column sortBy="#{sc.courseNumber}">
+                            <f:facet name="header">Course Number</f:facet>
+                            <h:outputText value="#{sc.courseNumber}"   />
+                        </p:column>
+                        <p:column sortBy="#{sc.crn}">
+                            <f:facet name="header">CRN</f:facet>
+                            <h:outputText value="#{sc.crn}"   />
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <h3>Add a Course</h3>
+                    <h:outputLabel for="crn" value="CRN:"/>
+                    <div class="divider"/>
+                    <p:inputText style="width: 7em" id="crn" value="#{UserBean.crn}"></p:inputText>
+                    <br/>
+                    <h:commandButton styleClass="btn" value ="Add" action="#{UserBean.addCourse()}"/>
+                    <br/><br/>                        
+                    <p:messages />
+                </h:form>
+                <br/>
+                <h:panelGroup/>
+                <h:link class="btn" value="Back" outcome="/studentFolder/profile"/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>

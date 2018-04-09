@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <div class="container">
+        <div class="header">
+            <h2>Student Account Registration</h2>
+        </div>
+        <p:inputText rendered="false"/>
+        <div class="content-h3-size">   
+            <h:body>
+                <h:form id = "regform">
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-md-3">
+                            UCO Email:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="user" value="#{registrationBean.userName}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="user" errorStyle="color: red" infoStyle="color: green" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            First Name:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="first" value="#{registrationBean.firstName}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="first" errorStyle="color: red" infoStyle="color: green" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>                        
+                        <div class="ui-g-12 ui-md-3">
+                            Last Name:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="last" value="#{registrationBean.lastName}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="last" errorStyle="color: red" infoStyle="color: green" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            Password:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputSecret id="password" value="#{registrationBean.password}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="password" errorStyle="color: red" infoStyle="color: green" />   
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            UCO ID:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="ucoId" value="#{registrationBean.ucoId}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="ucoId" errorStyle="color: red" infoStyle="color: green" />   
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            Major Code:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="major" value="#{registrationBean.major}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="major" errorStyle="color: red" infoStyle="color: green" />   
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            Phone:
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:inputText id="phone" value="#{registrationBean.phone}"/>
+                        </div>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:message for="phone" errorStyle="color: red" infoStyle="color: green" />
+                        </div>
+                        <div class="ui-g-12 ui-md-3"/>
+                        <div class="ui-g-12 ui-md-3">
+                            <h:link  styleClass="btn" value="Back" outcome="login" />
+                            <div class="divider"/>
+                            <h:commandButton class ="btn" value="Register" action="#{registrationBean.register}"/>
+                        </div>
+                    </div>
+                    <h:inputText id="registerError" rendered="false"/>    
+                    <h:message for="registerError" errorStyle="color: red" infoStyle="color: green" /> 
+                </h:form>
+            </h:body>
+        </div>
+    </div>
+</html>
+

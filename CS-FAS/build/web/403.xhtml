@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h1>ERROR 403: Access Forbidden!</h1>
+        </h:panelGroup>
+        <h:body class="container">
+            #{session.invalidate()}
+            <h2 style="margin-left: 20px">
+                <br />
+                You do not have permission to access this page!
+                <br />
+                Please go back and provide valid credentials.
+                <br /><br/>
+                <b>*Note:</b> If you registered but did not confirm you account click
+                <h:link  value="here" outcome="confirmation" />
+                to activate your account with your unique code.
+                <br/>
+                <div class="divider"></div>
+                <div class="divider"></div>
+                <br/>
+                <h:link class="btn" value="Go Home" outcome="index" />
+                <br/><div class="divider"></div>
+                <div class="divider"></div>
+            </h2>
+        </h:body>
+    </h:panelGroup>
+</html>
+

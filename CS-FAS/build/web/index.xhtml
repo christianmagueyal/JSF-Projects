@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+
+    <div class="container">
+        <div class="header">
+            <h2>
+                Department of Computer Science Faculty Advisement System
+            </h2>
+        </div>
+        <div class="content">
+            <h:body >
+                <h2 style="align-content: center; " >
+                    <p:link style="width:15em; height: 5em;" styleClass="btn" outcome="/studentFolder/profile" >
+                        <h:graphicImage style="float: left; width:5em; height: 5em" value="resources/images/graduation-cap.png" title="Students"  ></h:graphicImage>
+                        <div style="padding-top: 1em; font-size: 1.5em">Student Login</div>
+                    </p:link> 
+                    <div style="width: 7em; height: auto; display: inline-block"></div>
+                    <p:link style="width:15em; height: 5em;" styleClass="btn"  outcome="/advisorFolder/home">
+                        <h:graphicImage style="float: left; width:4.5em; height: 4.5em" value="resources/images/faculty-icon.png" title="Faculty"  ></h:graphicImage>
+                        <div style="padding-top: 1em; font-size: 1.5em">Advisor Login</div>
+                    </p:link> 
+                </h2>
+                <div class="divider" style="height: 20em" />
+            </h:body>
+        </div>
+    </div>
+</html>
+

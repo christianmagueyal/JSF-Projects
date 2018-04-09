@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CS-FAS</title>
+        <h:outputStylesheet name="style.css" library="css" />
+    </h:head>
+    <h:panelGroup layout="block" class="container">
+        <h:panelGroup layout="block" class="header">
+            <h2>Registered Students</h2>
+        </h:panelGroup>
+        <div class="content">
+            <h:body >
+                <h:form id="accountsform">
+                    <p:dataTable value="#{UserBean.users}" var="user" reflow="true" rows="5" paginator="true" styleClass="centered" >
+                        <p:column sortBy="#{user.firstName}">
+                            <f:facet name="header">First Name</f:facet>
+                            <h:inputText id="firstName" value="#{user.firstName}" size="2" rendered="#{user.edit}" />
+                            <h:outputText value="#{user.firstName}"  rendered="#{not user.edit}" />
+                            <p:message for="firstName" />
+                        </p:column>
+                        <p:column sortBy="#{user.lastName}">
+                            <f:facet name="header">Last Name</f:facet>
+                            <h:inputText id="lastName" value="#{user.lastName}" size="4" rendered="#{user.edit}" />
+                            <h:outputText value="#{user.lastName}"  rendered="#{not user.edit}" />
+                            <p:message for="lastName"/>
+                        </p:column>
+                        <p:column sortBy="#{user.userName}">
+                            <f:facet name="header">Username</f:facet>
+                            <h:inputText id="userName" value="#{user.userName}" size="10" rendered="#{user.edit}" />
+                            <h:outputText value="#{user.userName}"  rendered="#{not user.edit}" />
+                            <p:message for="userName"/>
+                        </p:column>
+                        <p:column sortBy="#{user.ucoID}">
+                            <f:facet name="header">UCO ID</f:facet>
+                            <h:inputText id="ucoID" value="#{user.ucoID}" size="4" rendered="#{user.edit}" />
+                            <h:outputText value="#{user.ucoID}"  rendered="#{not user.edit}" />
+                            <p:message for="ucoID"/>
+                        </p:column>
+                        <p:column sortBy="#{user.phone}">
+                            <f:facet name="header">Phone</f:facet>
+                            <h:inputText id="phone" value="#{user.phone}" size="7" rendered="#{user.edit}" />
+                            <h:outputText value="#{user.phone}"  rendered="#{not user.edit}" />
+                            <p:message for="phone" />
+                        </p:column>
+                        <p:column sortBy="#{user.major}">
+                            <f:facet name="header">Major</f:facet>
+                            <h:inputText id="major" value="#{user.major}" size="1" rendered="#{user.edit}" />
+                            <h:outputText value="#{user.major}"  rendered="#{not user.edit}" />
+                            <p:message for="major"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"></f:facet>
+                            <h:commandButton styleClass="btn-small" value ="Edit" action="#{user.setEdit(true)}" rendered="#{not user.edit}"/>
+                            <div class="divider"></div>
+                            <h:commandButton styleClass="btn-small" value ="Save" action="#{UserBean.editUser(user)}" rendered="#{user.edit}"/>
+                            <h:commandButton styleClass="btn-small-cancel" value="Delete" onclick="return confirm('Are you sure?')" action="#{UserBean.deleteUser(user)}" rendered="#{not user.edit}"/>
+                            <div class="divider"></div>
+                            <h:commandButton styleClass ="btn-small" value="Password Reset" action="#{UserBean.resetPassword(user)}" rendered="#{not user.edit}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <p:message for="success" id="success"/>
+                </h:form>
+                <br/><br/>
+                <p:link styleClass="btn" outcome="/advisorFolder/home" value="Back"/>
+            </h:body>
+        </div>
+    </h:panelGroup>
+</html>
